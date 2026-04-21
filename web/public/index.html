@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Live Dispatch Command Center</title>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="index.css">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Header -->
+        <header class="top-nav">
+            <div class="logo">
+                <div class="pulse-dot"></div>
+                <h1>Astra Dispatch <span>// Real-Time C++ Simulator</span></h1>
+            </div>
+            <div class="time-display">
+                Tick: <span id="tick-counter">0</span>
+            </div>
+        </header>
+
+        <main class="dashboard-grid">
+            <!-- Left Panel for active dispatches / stats -->
+            <aside class="side-panel">
+                <div class="panel-section">
+                    <h2><span class="icon">🚨</span> Active Emergencies</h2>
+                    <div id="emergencies-list" class="list-container">
+                        <!-- Pervasively populated via JS -->
+                        <div class="empty-state">No Active Emergencies</div>
+                    </div>
+                </div>
+
+                <div class="panel-section">
+                    <h2><span class="icon">🚑</span> Fleet Status</h2>
+                    <div id="fleet-list" class="list-container">
+                        <!-- Populated via JS -->
+                    </div>
+                </div>
+            </aside>
+
+            <!-- Center Panel: The Map Map -->
+            <section class="map-view">
+                <div class="map-container">
+                    <canvas id="city-map" width="800" height="800"></canvas>
+                    <div class="scanline"></div>
+                </div>
+
+                <!-- Map Legend -->
+                <div class="map-legend">
+                    <h3>System Key</h3>
+                    <div class="legend-item"><span class="legend-icon amb-available">🚑</span> Available Unit</div>
+                    <div class="legend-item"><span class="legend-icon amb-dispatched">🚑</span> Dispatched Unit</div>
+                    <div class="legend-item"><span class="legend-icon emergency-dot"></span> Active Emergency</div>
+                    <div class="legend-item"><span class="legend-line"></span> Assigned Route</div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <!-- Socket.io connection -->
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>
